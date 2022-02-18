@@ -1,0 +1,86 @@
+- string: Hello world!
+  name: No tokens just string
+  tokens:
+    - [content, Hello world!]
+  evaluations:
+    - name: with basic input
+      input:
+      output: Hello world!
+
+- string: '<< a  >>'
+  name: entire string is a token
+  tokens:
+    - [open_expression, '<<']
+    - [ignore, ' ']
+    - [identifier, 'a']
+    - [ignore, '  ']
+    - [close_expression, '>>']
+  evaluations:
+    - name: with basic input
+      input:
+        a: hello!
+      output: hello!
+    - name: where input is nil
+      input:
+      output: ''
+
+- string: "a << b.c >> \nd. << e.\"f g.h\".i >>"
+  name: one token with a period and one using double quotes
+  tokens:
+    - [content, 'a ']
+    - [open_expression, '<<']
+    - [ignore, ' ']
+    - [identifier, 'b']
+    - [ignore, '.']
+    - [identifier, 'c']
+    - [ignore, ' ']
+    - [close_expression, '>>']
+    - [content, " \nd. "]
+    - [open_expression, '<<']
+    - [ignore, ' ']
+    - [identifier, 'e']
+    - [ignore, '.']
+    - [open_expression_literal, '"']
+    - [identifier, 'f g.h']
+    - [ignore, '.']
+    - [identifier, 'i']
+    - [end_expression_literal, '"']
+    - [ignore, ' ']
+    - [close_expression, '>>']
+  evaluations:
+    - name: basic input
+      input:
+        b:
+          c: 123
+        e:
+          f g.h:
+            i: 456
+      output:  "a 123 \nd. 456"
+
+
+- name: Invalid syntax with no closing >>
+  string: Yo, << person.name
+  tokens:
+    - [content, 'Yo, ']
+    - [open_expression, '<<']
+    - [ignore, ' ']
+    - [identifier, 'person']
+    - [ignore, '.']
+  evaluations:
+    - name: with basic input
+      input:
+      output: 'Yo, '
+
+- name: Invalid syntax with double quotes but no closing quote
+  string: Yo, << person."name
+  tokens:
+    - [content, 'Yo, ']
+    - [open_expression, '<<']
+    - [ignore, ' ']
+    - [identifier, 'person']
+    - [ignore, '.']
+    - [open_expression_literal, '"']
+  evaluations:
+    - name: with basic input
+      input:
+      output: 'Yo, '

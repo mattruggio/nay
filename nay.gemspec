@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.email       = ['mattruggio@icloud.com']
   s.files       = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   s.bindir      = 'exe'
-  s.executables = %w[nay]
+  s.executables = %w[]
   s.homepage    = 'https://github.com/mattruggio/nay'
   s.license     = 'MIT'
   s.metadata    = {

@@ -24,6 +24,40 @@
       input:
       output: ''
 
+- string: '<< a_b >>'
+  name: token contains an underscore
+  tokens:
+    - [open_expression, '<<']
+    - [ignore, ' ']
+    - [identifier, 'a_b']
+    - [ignore, ' ']
+    - [close_expression, '>>']
+  evaluations:
+    - name: with basic input
+      input:
+        a_b: hello!
+      output: hello!
+    - name: where input is nil
+      input:
+      output: ''
+
+- string: '<< a-b >>'
+  name: token contains a hyphen
+  tokens:
+    - [open_expression, '<<']
+    - [ignore, ' ']
+    - [identifier, 'a-b']
+    - [ignore, ' ']
+    - [close_expression, '>>']
+  evaluations:
+    - name: with basic input
+      input:
+        a-b: hello!
+      output: hello!
+    - name: where input is nil
+      input:
+      output: ''
+
 - string: "a << b.c >> \nd. << e.\"f g.h\".i >>"
   name: one token with a period and one using double quotes
   tokens:

@@ -77,7 +77,7 @@ module Nay
       elsif scanner.scan(/"/)
         state.push(EXPRESSION_LITERAL)
         token = Token.new(OPEN_EXPRESSION_LITERAL, scanner.matched)
-      elsif scanner.scan_until(/[a-zA-Z0-9]*?(?=\s|\.|>>)/m)
+      elsif scanner.scan_until(/[a-zA-Z0-9_-]*?(?=\s|\.|>>)/m)
         token = Token.new(IDENTIFIER, scanner.matched)
       else
         scanner.terminate

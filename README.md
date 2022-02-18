@@ -39,7 +39,7 @@ This would set `compiled` to: `# yields: 'A quick fox jumps over the fence!'`
 Notes:
 
 * Tokens are passed through #[] method for the passed in object.  Any object providing a brackets interface will work.
-* if a token needs to contain a period in its name then you can qualify it with double quotes (i.e. `hello, << person."first name" >>`)
+* A valid token only contains the following characters: [a-zA-Z0-9_-]. If a token needs to contain something not in that list then qualify it with double quotes (i.e. `hello, << person."first name" >>`)
 
 ## Contributing
 

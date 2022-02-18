@@ -3,17 +3,13 @@
 require 'stringio'
 require 'strscan'
 
-require_relative 'nay/evaluator'
-require_relative 'nay/lexer'
+require_relative 'nay/template'
 
 # Top-level API
 module Nay
   class << self
-    def evaluate(string = '', input = {})
-      lexer     = Lexer.new(string)
-      evaluator = Evaluator.new(lexer)
-
-      evaluator.evaluate(input)
+    def evaluate(object, parameters = {})
+      Template.new(object).evaluate(parameters)
     end
   end
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Nay
-  # Knows how to take a stream of lexically analyzed tokens along with an input hash and
+  # Knows how to take a stream of lexically analyzed tokens along with a parameters hash and
   # evaluate interpolated key paths.
   class Evaluator
     attr_reader :lexer
@@ -10,16 +10,16 @@ module Nay
       @lexer = lexer
     end
 
-    def evaluate(input = {})
+    def evaluate(parameters = {})
       io      = StringIO.new
-      pointer = input
+      pointer = parameters
 
       while (token = lexer.next_token)
         case token.type
         when Lexer::CONTENT
           io << token.literal
         when Lexer::OPEN_EXPRESSION
-          pointer = input
+          pointer = parameters
         when Lexer::IDENTIFIER
           pointer = traverse(pointer, token.literal)
         when Lexer::CLOSE_EXPRESSION
@@ -32,8 +32,8 @@ module Nay
 
     private
 
-    def traverse(input, value)
-      input[value] if input.respond_to?(:[])
+    def traverse(parameters, value)
+      parameters[value] if parameters.respond_to?(:[])
     end
   end
 end

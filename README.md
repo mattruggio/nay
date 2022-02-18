@@ -22,6 +22,8 @@ bundle add nay
 
 ## Examples
 
+### Simple String-based Expression
+
 ````ruby
 animal   = {
   'animal' => {
@@ -40,6 +42,59 @@ Notes:
 
 * Tokens are passed through #[] method for the passed in object.  Any object providing a brackets interface will work.
 * A valid token only contains the following characters: [a-zA-Z0-9_-]. If a token needs to contain something not in that list then qualify it with double quotes (i.e. `hello, << person."first name" >>`)
+
+### More Complex Expressions
+
+Expressions are not limited to just being a string.  Here are the basic heuristics:
+
+* hash: then each key and value are recursively traversed
+* array: then each entry is recursively traversed
+* string: evaluated with parameters
+* anything not a hash, array, or string: do nothing
+
+An example of this would be a somewhat complicated object:
+
+````ruby
+object = {
+  '<< id_key >>' => '<< id >>',
+  'pets' => [
+    '<< pets."pet 1" >>',
+    '<< pets."pet 2" >>'
+  ],
+  zyx: :vut
+}
+
+parameters = {
+  'id_key' => 'id',
+  'id' => 123,
+  'pets' => {
+    'pet 1' => 'dog',
+    'pet 2' => 'cat'
+  },
+  zyx: :vut
+}
+
+evaluated_object = Nay.evaluate(object, parameters)
+````
+
+In the above example evaluated_object would be equivalent to:
+
+````ruby
+{
+  'id' => '123',
+  'pets' => [
+    'dog',
+    'cat'
+  ],
+  zyx: :vut
+}
+````
+
+Notes:
+
+* A hash, hash key, and hash value are represented here
+* An array with entries are represented here
+* A non-string is represented here (as the zyx/vut key/value)
 
 ## Contributing
 

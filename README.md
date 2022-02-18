@@ -1,6 +1,6 @@
 # Nay
 
-#### 'Lightweight and simple string templating library
+#### Lightweight and simple string templating library
 
 [![Gem Version](https://badge.fury.io/rb/nay.svg)](https://badge.fury.io/rb/nay) [![Ruby Gem CI](https://github.com/mattruggio/nay/actions/workflows/rubygem.yml/badge.svg)](https://github.com/mattruggio/nay/actions/workflows/rubygem.yml) [![Maintainability](https://api.codeclimate.com/v1/badges/4703f8c46f94685afc29/maintainability)](https://codeclimate.com/github/mattruggio/nay/maintainability) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 

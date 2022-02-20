@@ -25,7 +25,7 @@ bundle add nay
 ### Simple String-based Expression
 
 ````ruby
-animal   = {
+animal = {
   'animal' => {
     'speed' => 'quick',
     'type' => 'fox'

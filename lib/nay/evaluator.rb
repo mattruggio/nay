@@ -17,7 +17,7 @@ module Nay
       while (token = lexer.next_token)
         case token.type
         when Lexer::CONTENT
-          io << token.literal
+          io << token.literal.to_s
         when Lexer::OPEN_EXPRESSION
           pointer = parameters
         when Lexer::IDENTIFIER
@@ -33,7 +33,9 @@ module Nay
     private
 
     def traverse(parameters, value)
-      parameters[value] if parameters.respond_to?(:[])
+      return nil unless parameters.respond_to?(:[])
+
+      parameters[value]
     end
   end
 end

@@ -36,7 +36,7 @@ string   = 'A << animal.speed >> << animal.type >> jumps over the fence!'
 compiled = Nay.evaluate(string, animal)
 ````
 
-This would set `compiled` to: `# yields: 'A quick fox jumps over the fence!'`
+This would set `compiled` to: 'A quick fox jumps over the fence!'`
 
 Notes:
 

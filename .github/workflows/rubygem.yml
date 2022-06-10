@@ -24,7 +24,7 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Lint
-      run: ./bin/rubocop -c .rubocop.yml
+      run: ./bin/rubocop
     - name: Test
       run: ./bin/rspec spec --format documentation
     - name: Dependency Audit

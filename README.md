@@ -112,20 +112,26 @@ Basic steps to take to get this repository compiling:
 
 To execute the test suite run:
 
-````bash
-bundle exec rspec spec --format documentation
+````zsh
+bin/rspec spec --format documentation
 ````
 
 Alternatively, you can have Guard watch for changes:
 
-````bash
-bundle exec guard
+````zsh
+bin/guard
 ````
 
 Also, do not forget to run Rubocop:
 
-````bash
-bundle exec rubocop
+````zsh
+bin/rubocop
+````
+
+And auditing the dependencies:
+
+````zsh
+bin/bundler-audit check --update
 ````
 
 ### Publishing
